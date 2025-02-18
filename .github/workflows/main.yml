@@ -23,7 +23,14 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@v4
 
       - name: Verify flake configuration
-        run: nix develop -c nix flake check .
+        run: nix develop -c nix flake check . --all-systems
 
       - name: Lint Nix code with Alejandra
         run: nix develop -c alejandra --check .
+
+      - name: Approve pull request
+        if: github.event_name == 'pull_request'
+        uses: hmarr/auto-approve-action@v4
+        with:
+          pull-request-number: ${{ github.event.inputs.pullRequestNumber }}
+          review-message: 'Auto-approved as all checks passed.'
