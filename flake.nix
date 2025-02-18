@@ -9,7 +9,15 @@
     nixpkgs,
     flake-utils,
   }:
-    flake-utils.lib.eachDefaultSystem (
+    {
+      templates = {
+        node = {
+          description = "Nodejs 22";
+          path = ./node;
+        };
+      };
+    }
+    // flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = import nixpkgs {inherit system;};
       in {
@@ -18,12 +26,6 @@
           packages = with pkgs; [
             alejandra
           ];
-        };
-        templates = {
-          node = {
-            description = "Nodejs 22";
-            path = ./node;
-          };
         };
       }
     );
