@@ -1,0 +1,29 @@
+name: Test and Lint flake
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    if: github.repository == 'Auxera/nix-templates'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Use magic Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v4
+
+      - name: Verify flake configuration
+        run: nix develop -c nix flake check .
+
+      - name: Lint Nix code with Alejandra
+        run: nix develop -c alejandra --check .
