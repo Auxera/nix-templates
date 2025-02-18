@@ -33,4 +33,4 @@ jobs:
         uses: hmarr/auto-approve-action@v4
         with:
           pull-request-number: ${{ github.event.inputs.pullRequestNumber }}
-          review-message: 'Auto-approved as all checks passed.'
+          review-message: 'This pull request has been automatically approved as all checks have passed successfully.'
