@@ -24,6 +24,10 @@
             description = "Nodejs 22";
             path = ./node;
           };
+          ruby = {
+            description = "Ruby 3.4";
+            path = ./ruby;
+          };
         };
       }
     );
