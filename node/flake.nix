@@ -17,7 +17,7 @@
       in {
         devShells = {
           default = pkgs.mkShell rec {
-            buildsInputs = with pkgs; [
+            packages = with pkgs; [
               nodePackages.nodejs
               nodePackages.typescript
               nodePackages.typescript-language-server
