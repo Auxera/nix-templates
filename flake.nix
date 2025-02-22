@@ -19,6 +19,10 @@
           description = "Ruby 3.4";
           path = ./ruby;
         };
+        go = {
+          description = "Go 1.24";
+          path = ./go;
+        };
       };
     }
     // flake-utils.lib.eachDefaultSystem (
